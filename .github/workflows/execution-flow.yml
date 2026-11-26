@@ -78,7 +78,7 @@ jobs:
   error-notification:
     needs: [lint, deploy]
     if: failure()
-    runs-on: ubunutu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Send error notification
         run: |
