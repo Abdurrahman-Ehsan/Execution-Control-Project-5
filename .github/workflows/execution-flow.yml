@@ -82,5 +82,5 @@ jobs:
     steps:
       - name: Send error notification
         run: |
-        echo "Sending error notification.."
-        echo "${{toJSON(github)}}"
+          echo "Sending error notification.."
+          echo "${{toJSON(github)}}"
