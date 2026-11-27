@@ -39,3 +39,41 @@ steps:
   - name: Handle test failure
     if: failure()
     run: echo "The tests have failed!"
+
+
+    In GitHub Actions, continue-on-error is a setting that allows a workflow to continue even when a particular step or job fails.
+
+Difference between outcome and conclusion
+Suppose the test step fails but has continue-on-error: true.
+Property	Value
+steps.test.outcome	failure
+steps.test.conclusion	success
+
+In GitHub Actions, a Matrix strategy allows you to run the same job multiple times with different configurations, without writing that job repeatedly.
+
+For example, suppose you want to test your application using three Node.js versions:
+- Node.js 18
+- Node.js 20
+- Node.js 22
+Instead of creating three separate jobs, you can use a matrix.
+1. Basic example
+name: Matrix Example
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18, 20, 22]
+
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Run tests
+        run: npm test
